@@ -11,64 +11,80 @@ namespace TimberwolvesAnywhere
     {
         Default,
         Timberwolves,
-        RegularWolves
+        RegularWolves,
+        Random
     }
     internal class TimberwolfSettings : JsonModSettings
     {
+        [Name("Regular Wolf Percentage")]
+        [Description("If you use the random option in any of the settings below, this is the percent probability of a pack containing regular wolves.")]
+        [Slider(0f, 100f, 101)]
+        public float regularWolfPercentage = 50f;
+        
         [Name("Ash Canyon")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType ashCanyonWolves = SpawnType.Default;
 
         [Name("Bleak Inlet")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType bleakInletWolves = SpawnType.Default;
 
         [Name("Broken Railroad")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType brokenRailroadWolves = SpawnType.Default;
 
         [Name("Coastal Highway")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType coastalHighwayWolves = SpawnType.Default;
 
+        [Name("Crumbling Highway")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
+        public SpawnType crumblingHighwayWolves = SpawnType.Default;
+
         [Name("Desolation Point")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType desolationPointWolves = SpawnType.Default;
 
-        [Name("Forlourn Muskeg")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
-        public SpawnType forlournMuskegWolves = SpawnType.Default;
+        [Name("Forlorn Muskeg")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
+        public SpawnType forlornMuskegWolves = SpawnType.Default;
 
         [Name("Hushed River Valley")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType hushedRiverValleyWolves = SpawnType.Default;
 
         [Name("Mountain Town")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType mountainTownWolves = SpawnType.Default;
 
         [Name("Mystery Lake")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType mysteryLakeWolves = SpawnType.Default;
 
         [Name("Pleasant Valley")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType pleasantValleyWolves = SpawnType.Default;
 
         [Name("Timberwolf Mountain")]
-        [Description("The type of wolf to spawn in this region.")]
-        [Choice("Default", "Timberwolves", "Only Regular Wolves")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType timberwolfMountainWolves = SpawnType.Default;
+
+        [Name("Winding River")]
+        [Description(Implementation.settingDescription)]
+        [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
+        public SpawnType windingRiverWolves = SpawnType.Default;
     }
     internal static class Settings
     {
