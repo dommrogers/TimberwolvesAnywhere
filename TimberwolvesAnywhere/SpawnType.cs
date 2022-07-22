@@ -1,10 +1,9 @@
-﻿namespace TimberwolvesAnywhere
-{
+﻿namespace TimberwolvesAnywhere;
+
 	internal enum SpawnType
-    {
-        Default,
-        Timberwolves,
-        RegularWolves,
-        Random
-    }
+{
+    Default,
+    Timberwolves,
+    RegularWolves,
+    Random
 }
