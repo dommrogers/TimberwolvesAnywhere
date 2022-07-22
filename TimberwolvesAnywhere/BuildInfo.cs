@@ -1,6 +1,6 @@
 ﻿namespace TimberwolvesAnywhere
 {
-    public static class BuildInfo
+    internal static class BuildInfo
     {
         public const string Name = "TimberwolvesAnywhere"; // Name of the Mod.  (MUST BE SET)
         public const string Description = "Custom timberwolf location settings"; // Description for the Mod.  (Set as null if none)

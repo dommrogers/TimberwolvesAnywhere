@@ -2,7 +2,7 @@
 
 namespace TimberwolvesAnywhere
 {
-    public class Implementation : MelonMod
+    internal sealed class Implementation : MelonMod
     {
         public const string settingDescription = "The type of wolf to spawn in this region. If Random, each pack is treated individually.";
         public override void OnApplicationStart()
