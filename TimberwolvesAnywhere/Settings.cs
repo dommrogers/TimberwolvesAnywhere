@@ -1,26 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModSettings;
+﻿using ModSettings;
 
 namespace TimberwolvesAnywhere
 {
-    public enum SpawnType
+    internal sealed class Settings : JsonModSettings
     {
-        Default,
-        Timberwolves,
-        RegularWolves,
-        Random
-    }
-    internal class TimberwolfSettings : JsonModSettings
-    {
+        internal static Settings instance = new Settings();
+
         [Name("Regular Wolf Percentage")]
         [Description("If you use the random option in any of the settings below, this is the percent probability of a pack containing regular wolves.")]
         [Slider(0f, 100f, 101)]
         public float regularWolfPercentage = 50f;
-        
+
         [Name("Ash Canyon")]
         [Description(Implementation.settingDescription)]
         [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
@@ -85,14 +75,5 @@ namespace TimberwolvesAnywhere
         [Description(Implementation.settingDescription)]
         [Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
         public SpawnType windingRiverWolves = SpawnType.Default;
-    }
-    internal static class Settings
-    {
-        internal static TimberwolfSettings options;
-        internal static void OnLoad()
-        {
-            options = new TimberwolfSettings();
-            options.AddToModSettings("Timberwolves Anywhere", MenuType.MainMenuOnly);
-        }
     }
 }
