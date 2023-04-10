@@ -1,13 +1,13 @@
-﻿extern alias Hinterland;
-using HarmonyLib;
-using Hinterland;
+﻿using HarmonyLib;
+using Il2Cpp;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace TimberwolvesAnywhere;
 
 internal static class Patches
 {
-	[HarmonyPatch(typeof(SpawnRegion), "Deserialize")]
+	[HarmonyPatch(typeof(SpawnRegion), nameof(SpawnRegion.Deserialize))]
 	internal class OnlyTimberwolvesDeserialize
 	{
 		private static void Postfix(SpawnRegion __instance)
@@ -18,8 +18,8 @@ internal static class Patches
 			}
 		}
 	}
-	
-	[HarmonyPatch(typeof(SpawnRegion), "Start")]
+
+	[HarmonyPatch(typeof(SpawnRegion), nameof(SpawnRegion.Start))]
 	internal class OnlyTimberwolvesStart
 	{
 		private static void Postfix(SpawnRegion __instance)
@@ -30,7 +30,7 @@ internal static class Patches
 			}
 		}
 	}
-	
+
 	private static void AdjustToRegionSetting(SpawnRegion spawnRegion)
 	{
 		switch (GameManager.m_ActiveScene)
@@ -82,9 +82,19 @@ internal static class Patches
 			case "DamRiverTransitionZoneB":
 				SetWolfType(spawnRegion, Settings.instance.windingRiverWolves);
 				break;
+			case "LongRailTransitionZone":
+				SetWolfType(spawnRegion, Settings.instance.farRangeBranchLineWolves);
+				break;
+			case "AirfieldRegion":
+				SetWolfType(spawnRegion, Settings.instance.forsakenAirfieldWolves);
+				break;
+			default:
+				MelonLoader.MelonLogger.Warning("Other Region (" + GameManager.m_ActiveScene + ")");
+				SetWolfType(spawnRegion, Settings.instance.otherWolves);
+				break;
 		}
 	}
-	
+
 	private static void SetWolfType(SpawnRegion spawnRegion, SpawnType spawnType)
 	{
 		switch (spawnType)
@@ -100,24 +110,24 @@ internal static class Patches
 				break;
 		}
 	}
-	
+
 	private static void MakeTimberwolves(SpawnRegion spawnRegion)
 	{
-		GameObject? timberwolf = Resources.Load("WILDLIFE_Wolf_grey")?.Cast<GameObject>();
-		GameObject? timberwolf_aurora = Resources.Load("WILDLIFE_Wolf_grey_aurora")?.Cast<GameObject>();
-		if (timberwolf && timberwolf_aurora)
+		GameObject? timberwolf = Addressables.LoadAssetAsync<GameObject>("WILDLIFE_Wolf_grey").WaitForCompletion();
+		GameObject? timberwolf_aurora = Addressables.LoadAssetAsync<GameObject>("WILDLIFE_Wolf_grey_aurora").WaitForCompletion();
+		if (timberwolf && timberwolf_aurora && spawnRegion.m_SpawnablePrefab.name != timberwolf.name)
 		{
 			spawnRegion.m_AuroraSpawnablePrefab = timberwolf_aurora;
 			spawnRegion.m_SpawnablePrefab = timberwolf;
 			AdjustTimberwolfPackSize(spawnRegion);
 		}
 	}
-	
+
 	private static void MakeRegularWolves(SpawnRegion spawnRegion)
 	{
-		GameObject? regularWolf = Resources.Load("WILDLIFE_Wolf")?.Cast<GameObject>();
-		GameObject? regularWolf_aurora = Resources.Load("WILDLIFE_Wolf_aurora")?.Cast<GameObject>();
-		if (regularWolf && regularWolf_aurora)
+		GameObject? regularWolf = Addressables.LoadAssetAsync<GameObject>("WILDLIFE_Wolf").WaitForCompletion();
+		GameObject? regularWolf_aurora = Addressables.LoadAssetAsync<GameObject>("WILDLIFE_Wolf_aurora").WaitForCompletion();
+		if (regularWolf && regularWolf_aurora && spawnRegion.m_SpawnablePrefab.name != regularWolf.name)
 		{
 			spawnRegion.m_AuroraSpawnablePrefab = regularWolf_aurora;
 			spawnRegion.m_SpawnablePrefab = regularWolf;

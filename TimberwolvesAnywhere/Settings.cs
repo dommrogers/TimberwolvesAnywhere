@@ -46,10 +46,20 @@ internal sealed class Settings : JsonModSettings
 	[Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
 	public SpawnType desolationPointWolves = SpawnType.Default;
 
+	[Name("Far Range Branch Line")]
+	[Description(Implementation.settingDescription)]
+	[Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
+	public SpawnType farRangeBranchLineWolves = SpawnType.Default;
+
 	[Name("Forlorn Muskeg")]
 	[Description(Implementation.settingDescription)]
 	[Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
 	public SpawnType forlornMuskegWolves = SpawnType.Default;
+
+	[Name("Forsaken Airfield")]
+	[Description(Implementation.settingDescription)]
+	[Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
+	public SpawnType forsakenAirfieldWolves = SpawnType.Default;
 
 	[Name("Hushed River Valley")]
 	[Description(Implementation.settingDescription)]
@@ -85,4 +95,11 @@ internal sealed class Settings : JsonModSettings
 	[Description(Implementation.settingDescription)]
 	[Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
 	public SpawnType windingRiverWolves = SpawnType.Default;
+
+	[Section("Extras")]
+
+	[Name("Other Zones")]
+	[Description(Implementation.settingDescription+"\n\nFor any other region not specified above")]
+	[Choice("Default", "Timberwolves", "Regular Wolves", "Random")]
+	public SpawnType otherWolves = SpawnType.Default;
 }
