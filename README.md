@@ -4,7 +4,7 @@ This is a mod for **The Long Dark** by Hinterland Games Studio, Inc. It allows t
 
 # Thanks
 
-Many thanks to ds5678 for this great utility mod and his work on it.
+Many thanks to ds5678 for this great mod and his work on it.
 
 ## Installation
 
